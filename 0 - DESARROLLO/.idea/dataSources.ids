@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - docus_data@localhost" uuid="ee805a13-d7bb-40d0-911a-7a9f5151efa5">
+    <database-info product="MySQL" version="5.6.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="docus_data"/>
+    <table name="busquedas" schema="" catalog="docus_data" type="TABLE">
+      <column name="id_busqueda" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="run_funcionario" sqlType="VARCHAR" precision="9" scale="0" nullable="false" jdbcType="12"/>
+      <column name="id_documento" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fecha_hora" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="estado" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id_busqueda"/>
+      <foreign-key name="fk_funcionarios_has_documentos_funcionarios1" columns="run_funcionario" ref-table="funcionarios" ref-schema="" ref-catalog="docus_data" ref-columns="run_funcionario" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_funcionarios_has_documentos_documentos1" columns="id_documento" ref-table="documentos" ref-schema="" ref-catalog="docus_data" ref-columns="id_documento" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_funcionarios_has_documentos_documentos1_idx" unique="false" columns="id_documento"/>
+      <index name="fk_funcionarios_has_documentos_funcionarios1_idx" unique="false" columns="run_funcionario"/>
+    </table>
+    <table name="documentos" schema="" catalog="docus_data" type="TABLE">
+      <column name="id_documento" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_documento_tipo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="run_funcionario_creador" sqlType="VARCHAR" precision="9" scale="0" nullable="false" jdbcType="12"/>
+      <column name="fecha_hora_creacion" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="fecha_hora_ultima_vista" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="nombre" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="300" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ruta" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="estado" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id_documento"/>
+      <foreign-key name="fk_documentos_funcionarios1" columns="run_funcionario_creador" ref-table="funcionarios" ref-schema="" ref-catalog="docus_data" ref-columns="run_funcionario" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_documentos_tipos_documentos" columns="id_documento_tipo" ref-table="documentos_tipos" ref-schema="" ref-catalog="docus_data" ref-columns="id_documento_tipo" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_funcionarios_has_documentos_documentos1" table="busquedas" schema="" catalog="docus_data" columns="id_documento"/>
+      <index name="fk_documentos_funcionarios1_idx" unique="false" columns="run_funcionario_creador"/>
+      <index name="fk_documentos_tipos_documentos_idx" unique="false" columns="id_documento_tipo"/>
+    </table>
+    <table name="documentos_tipos" schema="" catalog="docus_data" type="TABLE">
+      <column name="id_documento_tipo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="300" scale="0" nullable="true" jdbcType="12"/>
+      <column name="estado" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id_documento_tipo"/>
+      <exported-key name="fk_documentos_tipos_documentos" table="documentos" schema="" catalog="docus_data" columns="id_documento_tipo"/>
+    </table>
+    <table name="funcionarios" schema="" catalog="docus_data" type="TABLE">
+      <column name="run_funcionario" sqlType="VARCHAR" precision="9" scale="0" nullable="false" jdbcType="12"/>
+      <column name="id_funcionario_tipo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nombre1" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nombre2" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apellido1" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apellido2" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="estado" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="run_funcionario"/>
+      <foreign-key name="fk_funcionarios_funcionarios_tipos1" columns="id_funcionario_tipo" ref-table="funcionarios_tipos" ref-schema="" ref-catalog="docus_data" ref-columns="id_funcionario_tipo" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_funcionarios_has_documentos_funcionarios1" table="busquedas" schema="" catalog="docus_data" columns="run_funcionario"/>
+      <exported-key name="fk_documentos_funcionarios1" table="documentos" schema="" catalog="docus_data" columns="run_funcionario_creador"/>
+      <index name="fk_funcionarios_funcionarios_tipos1_idx" unique="false" columns="id_funcionario_tipo"/>
+    </table>
+    <table name="funcionarios_tipos" schema="" catalog="docus_data" type="TABLE">
+      <column name="id_funcionario_tipo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="esatdo" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id_funcionario_tipo"/>
+      <exported-key name="fk_funcionarios_funcionarios_tipos1" table="funcionarios" schema="" catalog="docus_data" columns="id_funcionario_tipo"/>
+    </table>
+    <procedure name="get_documentos_tipos" schema="" catalog="docus_data" type="1"/>
+  </data-source>
+</component>

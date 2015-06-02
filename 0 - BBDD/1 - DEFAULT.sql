@@ -1,0 +1,1 @@
+INSERT INTO `docus_data`.`documentos_tipos` (`id_documento_tipo`, `nombre`, `descripcion`, `estado`) VALUES (NULL, 'Decreto', NULL, '1'), (NULL, 'Ordenanza', NULL, '1'), (NULL, 'Base De Concurso Publico', NULL, '1'), (NULL, 'Permisos de Edificación', NULL, '1'), (NULL, 'Convenio', NULL, '1');

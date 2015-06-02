@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - docus_data@localhost" uuid="ee805a13-d7bb-40d0-911a-7a9f5151efa5">
+      <secret-storage>master_key</secret-storage>
+      <user-name>docus_data</user-name>
+      <schema-pattern>docus_data.*</schema-pattern>
+      <default-schemas>docus_data.*</default-schemas>
+    </data-source>
+  </component>
+</project>
+
